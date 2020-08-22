@@ -1,0 +1,59 @@
+esphome:
+  name: ""
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: ""
+  password: ""
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "abcdefg"
+    password: "12345678"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+sm2135:
+  data_pin: GPIO12
+  clock_pin: GPIO14
+  
+output:
+  - platform: sm2135
+    id: output_red
+    channel: 2
+  - platform: sm2135
+    id: output_green
+    channel: 0
+  - platform: sm2135
+    id: output_blue
+    channel: 1
+  - platform: sm2135
+    id: output_cold_white
+    channel: 3
+  - platform: sm2135
+    id: output_warm_white
+    channel: 4
+
+light:
+  - platform: rgbww
+    name: ""
+    id: ""
+    default_transition_length: 1s
+    red: output_red
+    green: output_green
+    blue: output_blue
+    cold_white: output_cold_white
+    warm_white: output_warm_white
+    cold_white_color_temperature: 6536 K
+    warm_white_color_temperature: 2800 K
+        # Ensure the light turns on by default if the physical switch is actuated.
+    restore_mode: ALWAYS_ON
